@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#myCanvas,
+#canvasDrawDfa {
+    border: 1px solid #000;
+}
+
+.link {
+    stroke: #ccc;
+    stroke-width: 3;
+    fill: none;
+    cursor: pointer;
+}
+
+.link:hover {
+    stroke: red;
+}
+
+.node {
+    fill: #fff;
+    stroke: #ccc;
+    stroke-width: 1;
+}
+
+.node:hover {
+    cursor: pointer;
+}
+
+.node-label {
+    z-index: 10;
+}
+
+.final-border {
+    stroke: #000;
+    stroke-width: 4;
+}
+
+.start-border {
+    stroke: green;
+    stroke-width: 4px;
+}
+
+.lineRemove {
+    stroke: #ccc;
+    stroke-width: 1px;
+}
+
+.node-fill-background {
+    fill: #68a3e6 !important;
+    color: #fff;
+}
+
+.node-fill-start-end {
+    fill: #aad317;
+    color: #fff;
+}

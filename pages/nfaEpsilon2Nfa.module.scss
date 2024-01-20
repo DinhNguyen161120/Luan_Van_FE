@@ -1,0 +1,37 @@
+.nfaEpsilonToNfa {
+    display: flex;
+
+    .mode {
+        padding-top: 10px;
+
+        .selectMode {
+            background-color: #000;
+            color: #fff;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            // margin-right: 5px;
+            padding: 5px 10px;
+        }
+    }
+
+    .left {
+        padding: 10px;
+        flex: 2;
+    }
+
+    .right {
+        flex: 1;
+
+        .convertButton {
+
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            background-color: #202e3e;
+            padding: 7px 27px;
+        }
+    }
+}

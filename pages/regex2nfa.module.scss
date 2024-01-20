@@ -1,0 +1,44 @@
+.regex2dfa {
+    margin: 0 100px;
+    padding-top: 50px;
+
+    .inputData {
+        display: flex;
+        flex-direction: column;
+
+        .inputDataTop {
+            justify-content: center;
+
+            label {
+                padding-right: 10px;
+            }
+
+            input {
+                width: 80%;
+                border: none;
+                border-bottom: 1px solid #202e3e;
+                outline: none;
+            }
+        }
+
+        .inputDataBottom {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            padding-bottom: 10px;
+
+            button {
+                border: none;
+                color: #fff;
+                border-radius: 5px;
+                background-color: #202e3e;
+                padding: 7px 27px;
+            }
+        }
+    }
+
+    .svgNfa {
+        width: 100%;
+    }
+
+}

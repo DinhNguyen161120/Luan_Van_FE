@@ -1,0 +1,135 @@
+.header {
+    height: 50px;
+    background-color: #202e3e;
+    position: relative;
+    display: flex;
+
+    .headerButton {
+        color: #fff;
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10;
+    }
+
+    svg {
+        border: none;
+    }
+
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        width: calc(100% - 50px);
+    }
+
+    .bars {
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: #364251;
+        }
+
+    }
+
+    .containerNavBar {
+        color: #fff;
+        width: 250px;
+        height: calc(100vh - 50px);
+        background-color: #2b3847;
+        position: absolute;
+        top: 50px;
+        left: -250px;
+
+        .groupChoose {
+            margin-right: 30px;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+
+            &:hover {
+                background-color: #364251;
+            }
+
+            .groupIcon {
+                font-size: 12px;
+                padding-right: 7px;
+            }
+        }
+
+        .listLinks {
+            margin-left: 30px;
+
+            .linkContainer {
+                font-size: 14px;
+                padding: 10px 0;
+                padding-left: 20px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #364251;
+                }
+            }
+        }
+    }
+
+    .showNavBar {
+        animation: show 0.2s linear forwards;
+    }
+
+    .hideNavBar {
+        animation: hide 0.2s linear forwards;
+    }
+
+    .hideLink {
+        display: none !important;
+    }
+}
+
+.root {
+
+    &:hover {
+        background-color: #888888;
+    }
+}
+
+@keyframes example {
+    from {
+        background-color: red;
+    }
+
+    to {
+        background-color: yellow;
+    }
+}
+
+@keyframes hide {
+
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: -250px;
+    }
+}
+
+@keyframes show {
+
+    from {
+        left: -250px;
+    }
+
+    to {
+        left: 0px;
+    }
+}

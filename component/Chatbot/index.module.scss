@@ -1,0 +1,54 @@
+.ChatbotContainer {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #fff;
+
+    .chatContainer {
+        width: 600px;
+        max-width: 90vw;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+
+        .headerChat {
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+
+            .chatbotName {
+                font-size: 20px;
+                font-weight: 600;
+                padding-top: 5px;
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .containerImageChatBot {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    .messageArea {
+        height: 70vh;
+    }
+
+    .inputContainer {
+        .inputText {
+            width: 90%;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+            // border-radius: 5px;
+            outline: none;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+    }
+}

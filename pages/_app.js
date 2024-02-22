@@ -27,6 +27,8 @@ i18n.load({
     vi: messagesVi,
 });
 i18n.activate("en");
+
+import { Chatbot } from "../component/Chatbot"
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps }) {
     return <Provider store={store}>
@@ -34,6 +36,7 @@ export default function MyApp({ Component, pageProps }) {
             <MantineProvider theme={theme}>
                 <Component {...pageProps} />
                 <ToastContainer />
+                <Chatbot />
             </MantineProvider>
         </I18nProvider>
     </Provider >

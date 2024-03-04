@@ -1,7 +1,7 @@
 import { isNotEmpty, useForm } from '@mantine/form';
 import { Anchor, Checkbox, Flex, Group, Paper, PaperProps, PasswordInput, Stack, Text } from '@mantine/core';
 import { TextInput, Button, Box, rem } from '@mantine/core';
-import { loginApi, registerApi } from '../../apiNode';
+import { loginApi, registerApi } from '../../api';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -48,10 +48,11 @@ export const Login = (props: PaperProps) => {
             });
             if (response.error) {
                 setShowLoader(false);
-                toast.error('An error occupy. please try again!')
+                toast.error(response?.exception?.response?.data)
             } else {
                 const data = response?.data?.metadata?.userDetails;
-                localStorage.setItem("userDetails", JSON.stringify(data));
+                // localStorage.setItem("userDetails", JSON.stringify(data)); Node
+                localStorage.setItem("userDetails", data);
                 router.push(`/regex2nfa`);
             }
         } else if (type === "register") {
@@ -63,12 +64,9 @@ export const Login = (props: PaperProps) => {
                 lastName: form.values.lastName,
             });
             if (response.error) {
-                toast.error(
-                    "An error occupy. Please try again!",
-                    {
-                        position: "bottom-center",
-                    },
-                );
+                toast.error(response?.exception?.response?.data, {
+                    position: "bottom-center",
+                })
                 setShowLoader(false);
             } else {
                 toast.success("Registered successfully", {
@@ -76,7 +74,8 @@ export const Login = (props: PaperProps) => {
                 });
                 toggle();
                 const userData = response?.data?.metadata?.userDetails;
-                localStorage.setItem("userDetails", JSON.stringify(userData));
+                // localStorage.setItem("userDetails", JSON.stringify(userData)); Node
+                localStorage.setItem("userDetails", userData);
                 setShowLoader(false);
                 router.push(`/driver`);
             }

@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { IconArrowBarUp, IconFolderPlus } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
-import { getAllFolder, createFolder, saveFile, deleteFolder } from "../../apiNode";
+import { saveFile, deleteFolder } from "../../apiNode";
+import { createFolder, getAllFolder } from "../../api";
 import { checkNamesake } from "../../helpers/checkNamesake";
-import { findRootFolder } from "../../helpers/findRootFolder";
+import { findRootFolder, findRootFolderV2 } from "../../helpers/findRootFolder";
 import { findChildOfFolder } from "../../helpers/findChildOfFolder";
 import { findParentOfFolder } from "../../helpers/findParentOfFolder";
 import { initializeApp } from "firebase/app";
@@ -62,8 +63,9 @@ export const DriverPage = () => {
                 if (userDetailsLocal) {
                     let res: any = await getAllFolder(userDetailsLocal._id);
                     let folders = res.data;
+                    console.log(folders)
                     setFolders(folders);
-                    let rootFolder: folder = findRootFolder(folders, userDetailsLocal._id);
+                    let rootFolder: folder = findRootFolderV2(folders, userDetailsLocal._id);
                     setFolderCurrent(rootFolder);
                 }
                 setUserDetails(userDetailsLocal);

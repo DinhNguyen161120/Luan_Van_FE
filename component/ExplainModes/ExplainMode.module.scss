@@ -1,6 +1,7 @@
-
 .mode {
     padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
 
     .selectMode {
         background-color: #000;
@@ -13,4 +14,20 @@
         // margin-right: 5px;
         padding: 5px 10px;
     }
+}
+
+.modeDetails {
+    margin: 10px 0;
+}
+
+.explainMode {
+    height: 50vh;
+    position: absolute;
+    background-color: #fff;
+    transition: height 0.5s;
+}
+
+.hideExplainMode {
+    height: 0vh;
+    overflow: hidden;
 }

@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import ConfigMode from '../Modes/ConfigMode';
 import IntroduceDelete from '../Modes/introduceDelete';
 import IntroduceDraw from '../Modes/introduceDraw';
@@ -6,6 +7,10 @@ import IntroduceEdit from '../Modes/introduceEdit';
 import IntroduceForce from '../Modes/introduceForce';
 import styles from './ExplainMode.module.scss'
 export const ExplainMode = ({ mode, setMode = () => { } }) => {
+    const [showExplainMode, setShowExplainMode] = useState(false)
+    const handleShowExplainMode = () => {
+        setShowExplainMode(!showExplainMode)
+    }
     return (
         <>
             <div className={styles.mode}>
@@ -49,13 +54,22 @@ export const ExplainMode = ({ mode, setMode = () => { } }) => {
                 >
                     Config
                 </button>
+                <div>
+                    <button className={styles.modeDetails}
+                        onClick={handleShowExplainMode}
+                    >
+                        Mode details
+                    </button>
+                </div>
             </div>
-            <div>
-                {mode == 0 && <IntroduceForce />}
-                {mode == 1 && <IntroduceDraw />}
-                {mode == 2 && <IntroduceDelete />}
-                {mode == 3 && <IntroduceEdit />}
-                {mode == 4 && <ConfigMode />}
+            <div className={`${styles.explainMode} ${showExplainMode ? '' : styles.hideExplainMode}`}>
+                <div>
+                    {mode == 0 && <IntroduceForce />}
+                    {mode == 1 && <IntroduceDraw />}
+                    {mode == 2 && <IntroduceDelete />}
+                    {mode == 3 && <IntroduceEdit />}
+                    {mode == 4 && <ConfigMode />}
+                </div>
             </div>
         </>
     );

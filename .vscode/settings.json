@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "breadcrumd",
+    "Btns",
     "chong",
     "Datas",
     "dinh",
@@ -13,6 +14,7 @@
     "nhau",
     "Rasa",
     "reduxjs",
+    "Sepback",
     "tabler",
     "tailwindcss",
     "Theo",
@@ -22,7 +24,7 @@
     "uuidv",
     "vtcp",
     "vtpt"
-  ],
+],
   "editor.formatOnSave": true,
   "editor.detectIndentation": false
 }

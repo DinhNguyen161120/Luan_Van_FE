@@ -1,8 +1,12 @@
+.bgWhite {
+    background-color: #fff !important;
+}
+
 .ChatbotContainer {
     position: fixed;
-    bottom: 50px;
-    right: 50px;
-    background-color: #fff;
+    bottom: 20px;
+    left: 20px;
+    background-color: transparent;
 
     .chatContainer {
         width: 600px;

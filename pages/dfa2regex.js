@@ -15,7 +15,7 @@ const Dfa2Regex = () => {
     const [nodes, setNodes] = useState([])
     const [linkLength, setLinkLength] = useState(200)
     const [links, setLinks] = useState([])
-    const [widthSvg, setWidthSvg] = useState(800)
+    const [widthSvg, setWidthSvg] = useState(400)
     const [heightSvg, setHeightSvg] = useState(400)
     const [radiusCircle, setRadiusCircle] = useState(30)
     const [finalStates, setFinalStates] = useState([])

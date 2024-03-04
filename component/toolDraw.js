@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import headerActions from "../redux/action/headerActions";
 import { calcLinkLength } from "../utils/calcLinkLength";
 import { getAllLinkFromNodeId } from "../utils/getAllLinkFromNodeId"
+import { SUFFIX_NODE_LABEL } from "../utils/constantVariable";
 
 const ToolDraw = ({
     widthSvg,
@@ -208,7 +209,10 @@ const ToolDraw = ({
                             return bottomThreshold;
                         }
                         return d.y;
-                    });
+                    })
+                    .attr('id', (d) => {
+                        return d.id + SUFFIX_NODE_LABEL // id for node label, example q0, q1, 0, 1
+                    })
             });
             if (mode !== 3) {
                 node.call(dragCustom(simulation));

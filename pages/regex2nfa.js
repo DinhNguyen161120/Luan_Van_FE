@@ -246,7 +246,7 @@ const Regex2Dfa = () => {
     useEffect(() => {
         dispatch({
             type: headerActions.SET_TITLE_HEADER,
-            title: 'Regex to NFA'
+            title: 'Regex to NFAε'
         })
     }, [])
 

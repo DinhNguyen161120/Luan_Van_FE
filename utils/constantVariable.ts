@@ -1,0 +1,1 @@
+export const SUFFIX_NODE_LABEL = 'SUFFIX_NODE_LABEL';

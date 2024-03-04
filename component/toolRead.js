@@ -4,7 +4,7 @@ import styles from './toolRead.module.scss'
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackward, faForward } from '@fortawesome/free-solid-svg-icons'
-
+import { SUFFIX_NODE_LABEL } from '../utils/constantVariable'
 const ToolRead = ({
     automata,
     typeAutomata,
@@ -17,7 +17,7 @@ const ToolRead = ({
     const [stringRead, setStringRead] = useState('')
     const [showAccept, setShowAccept] = useState(false)
     const [showReject, setShowReject] = useState(true)
-
+    const [stepReads, setStepReads] = useState([])
     const handleChangeInput = (e) => {
         let string = e.target.value
         let array = string.split('')
@@ -38,9 +38,27 @@ const ToolRead = ({
         setShowReject(true)
         setStart(false)
     }
+    const fromListIdToNodeLabel = (listId = []) => {
+        let nodeLabels = listId.map(id => {
+            let nodeLabel = document.getElementById(id + SUFFIX_NODE_LABEL)
+            if (nodeLabel) {
+                return nodeLabel.textContent
+            }
+        })
+        return nodeLabels
+    }
+    const fromIdToNodeLabel = (id) => {
+        let nodeLabel = document.getElementById(id + SUFFIX_NODE_LABEL)
+        if (nodeLabel) {
+            return nodeLabel.textContent
+        }
+        return null
+    }
     const handleStart = () => {
         if (typeAutomata == 'nfaEpsilon') {
             let epsilonClosure = getEpsilonClosure(automata.initial_state, automata.transition_function)
+            let nodeLabels = fromListIdToNodeLabel(epsilonClosure)
+            setStepReads([...stepReads, nodeLabels])
             setNodeAfterRead(epsilonClosure)
         } else if (typeAutomata == 'dfa') {
             setNodeAfterRead([automata.initial_state])
@@ -54,6 +72,7 @@ const ToolRead = ({
         setStart(false)
         setIndexString(-1)
         setNodeAfterRead([])
+        setStepReads([])
     }
     const handleSepback = () => {
         let nextIndex = indexString - 1
@@ -62,6 +81,12 @@ const ToolRead = ({
     }
     const handleReadNext = () => {
         let nextIndex = indexString + 1
+        // if (typeAutomata == 'nfaEpsilon') {
+        //     let states = stringAcceptByNfaEpsilon(text, automata)
+        // } else if (typeAutomata == 'dfa') {
+        //     let states = stringAcceptByDfa(stringRead, automata)
+        // }
+
         setIndexString(nextIndex)
         setStringRead(text.slice(0, nextIndex + 1))
     }
@@ -141,6 +166,7 @@ const ToolRead = ({
     }
 
     useEffect(() => {
+        console.log(stepReads)
         if (typeAutomata == 'nfaEpsilon') {
             let states = stringAcceptByNfaEpsilon(stringRead, automata)
             if (text.length === stringRead.length) {
@@ -155,7 +181,11 @@ const ToolRead = ({
                     setShowReject(check)
                 }
             }
-            setNodeAfterRead(states)
+            if (states) {
+                let listLabel = fromListIdToNodeLabel(states)
+                setStepReads([...stepReads, listLabel])
+                setNodeAfterRead(states)
+            }
         } else if (typeAutomata == 'dfa') {
             let states = stringAcceptByDfa(stringRead, automata)
             if (text.length === stringRead.length) {
@@ -172,6 +202,7 @@ const ToolRead = ({
             }
             setNodeAfterRead(states)
         }
+        console.log(text, indexString)
     }, [stringRead])
 
     return (
@@ -226,6 +257,23 @@ const ToolRead = ({
                     start && <button
                         onClick={handleReadAll}
                     >Read all</button>
+                }
+            </div>
+            <div>
+                {
+                    typeAutomata == 'nfaEpsilon' && stepReads.length > 0 ? stepReads.map((listLabels, index) => {
+                        if (index == 0) {
+                            return <div>
+                                <div>{`- Step ${index + 1}:`}</div>
+                                {` ε-CLOSURE(${fromIdToNodeLabel(automata.initial_state)}) = ${listLabels}`}
+                            </div>
+                        }
+                        return <div>
+                            <div>{`- Step ${index + 1}:`}</div>
+                            {`ε-CLOSURE(δ({${stepReads[index - 1]}}, ${text[index - 1]})) = ${listLabels.length ? listLabels : '{}'}`}
+                        </div>
+                    })
+                        : ''
                 }
             </div>
         </div >

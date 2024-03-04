@@ -51,8 +51,9 @@ export const Chatbot = () => {
             handleSendMessage()
         }
     }
+
     return <>
-        <Box className={classes.ChatbotContainer} >
+        <Box className={`${classes.ChatbotContainer} ${showChat && classes.bgWhite}`} >
             {
                 showChat &&
                 <div className={classes.chatContainer}>

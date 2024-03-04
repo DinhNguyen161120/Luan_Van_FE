@@ -276,7 +276,7 @@ export const getEpsilonClosure = (state, transition_function) => {
         while (state_stack.length > 0) {
             let current_state = state_stack.pop()
             let readEpsilonToState = transition_function[current_state]['$']
-            if (readEpsilonToState.length > 0) {
+            if (readEpsilonToState && readEpsilonToState.length > 0) {
                 readEpsilonToState.forEach(state => {
                     if (!closure_states.includes(state)) {
                         closure_states.push(state)

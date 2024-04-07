@@ -42,7 +42,7 @@ const Dfa2Regex = () => {
                     && link1.label === link2.label
                     && link1.label != ''
                     && link2.label != '') {
-                    alert(`Symbol ${link2.label} has transitioned from state ${link1.source.label}.`)
+                    alert(`Kí hiệu ${link2.label} đã được chuyển từ trạng thái ${link1.source.label}.`)
                     link2.label = ''
                     link1.label = ''
                 }
@@ -104,7 +104,7 @@ const Dfa2Regex = () => {
             links.forEach(link => {
                 if (link && link.label === '$') {
                     link.label = ''
-                    alert('Dfa does not contain the $ character')
+                    alert('DFA không được chứa kí tự $')
                 }
             })
         }
@@ -158,7 +158,7 @@ const Dfa2Regex = () => {
             }
             setShowLoader(false)
         } else {
-            alert('You have not selected an end state.')
+            alert('Bạn chưa chọn trạng thái kết thúc.')
         }
     }
 
@@ -212,7 +212,7 @@ const Dfa2Regex = () => {
                     <div>
                         <button className={styles.convertButton} onClick={handleSubmit}>convert</button>
                     </div>
-                    <div>Regular expression:</div>
+                    <div>Biểu thức chính quy:</div>
                     <div className={styles.regex}>
                         {regex}
                     </div>

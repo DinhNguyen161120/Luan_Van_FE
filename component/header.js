@@ -97,7 +97,7 @@ const Header = () => {
             <div className={styles.title} >
                 {title}
             </div>
-            <div className={styles.headerButton}>
+            {/* <div className={styles.headerButton}>
                 {
                     userDetails != null &&
                     <Text mr={10}>{userDetails.firstName + ' ' + userDetails.lastName}</Text>
@@ -109,7 +109,7 @@ const Header = () => {
                         <Text
                             ml={rem(5)}
                         >
-                            SIGN IN
+                            Đăng nhập
                         </Text>
                     </Button>
                 }
@@ -120,17 +120,18 @@ const Header = () => {
                         <Text
                             ml={rem(5)}
                         >
-                            LOG OUT
+                            Đăng xuất
                         </Text>
                     </Button>
                 }
-            </div>
+            </div> */}
             <div className={`${styles.containerNavBar}`}>
                 <NavLink
                     label="Automata tools"
                     leftSection={<IconGauge size="1rem" stroke={1.5} />}
                     childrenOffset={28}
                     classNames={styles}
+                    defaultOpened
                 >
                     <NavLink
                         classNames={styles}
@@ -152,18 +153,24 @@ const Header = () => {
                     />
                     <NavLink
                         classNames={styles}
+                        label="NFA to DFA"
+                        onClick={() => { handleClickLink('/nfa2dfa2') }}
+                        active={headerSelect == 'nfa2dfa'}
+                    />
+                    <NavLink
+                        classNames={styles}
                         label="DFA to Regex"
                         onClick={() => { handleClickLink('/dfa2regex') }}
                         active={headerSelect == 'dfa2regex'}
                     />
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     label="My drive"
                     childrenOffset={28}
                     classNames={styles}
                     onClick={() => { handleClickLink('/driver') }}
                     active={headerSelect == 'driver'}
-                ></NavLink>
+                ></NavLink> */}
             </div>
         </div>
     )

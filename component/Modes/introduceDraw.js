@@ -7,14 +7,14 @@ const IntroduceDraw = () => {
             <div className={styles.content}>
                 <div>Draw Mode</div>
                 <p>
-                    This mode allows you to draw new nodes and/or edges.
+                    Chế độ này cho phép bạn vẽ các nút và/hoặc cạnh mới.
                 </p>
-                <div>Ways you can interact with the graph:</div>
+                <div>Những cách bạn có thể tương tác với biểu đồ:</div>
                 <ul>
-                    <li>Clicking anywhere on the graph canvas creates a new node.</li>
-                    <li>Clicking on a node starts the drawing process of a new edge.</li>
-                    <li>To cancel the new edge, click anywhere on the canvas.</li>
-                    <li>To finish drawing the edge, click on the desired neighbor.</li>
+                    <li>Nhấp vào bất kỳ vị trí nào trên khung vẽ biểu đồ sẽ tạo ra một nút mới.</li>
+                    <li>Nhấp vào một nút sẽ bắt đầu quá trình vẽ một cạnh mới.</li>
+                    <li>Để hủy cạnh mới, hãy nhấp vào bất kỳ vị trí nào trên khung vẽ.</li>
+                    <li>Để hoàn tất việc vẽ cạnh, hãy nhấp vào hàng xóm mong muốn.</li>
                 </ul>
             </div>
         </div >

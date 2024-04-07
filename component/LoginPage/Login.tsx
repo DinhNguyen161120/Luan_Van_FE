@@ -29,12 +29,12 @@ export const Login = (props: PaperProps) => {
         },
 
         validate: {
-            email: (val) => (emailRegex.test(val) ? null : i18n._("Invalid email")),
+            email: (val) => (emailRegex.test(val) ? null : i18n._("Email không đúng")),
             password: (val) =>
-                val.length < 6 ? i18n._("Password should include at least 6 characters") : null,
+                val.length < 6 ? i18n._("Mật khẩu nên có ít nhất 8 ký tự") : null,
             confirmPassword: (value, values) =>
                 value !== values.password && type === "register"
-                    ? i18n._("Passwords did not match")
+                    ? i18n._("Mật khẩu xác nhận không chính xác")
                     : null,
         },
     });
@@ -101,9 +101,8 @@ export const Login = (props: PaperProps) => {
             <Paper w={{ base: "400px", md: "450px" }} radius="md" p="xl" withBorder {...props}>
                 <Flex justify={"space-between"}>
                     <Text size="lg" fw={500}>
-                        {i18n._(type)}
+                        {type === 'login' ? "Đăng nhập" : "Đăng kí"}
                     </Text>
-                    {/* <SwitchLanguage /> */}
                 </Flex>
 
                 <form
@@ -115,8 +114,8 @@ export const Login = (props: PaperProps) => {
                         {type === "register" && (
                             <TextInput
                                 required
-                                label={i18n._("First name")}
-                                placeholder={i18n._("Your firstName")}
+                                label={i18n._("Tên")}
+                                placeholder={i18n._("Tên của bạn...")}
                                 value={form.values.firstName}
                                 onChange={(event) =>
                                     form.setFieldValue("firstName", event.currentTarget.value)
@@ -127,8 +126,8 @@ export const Login = (props: PaperProps) => {
                         {type === "register" && (
                             <TextInput
                                 required
-                                label={i18n._("Last name")}
-                                placeholder={i18n._("Your lastName")}
+                                label={i18n._("Họ")}
+                                placeholder={i18n._("Họ của bạn...")}
                                 value={form.values.lastName}
                                 onChange={(event) =>
                                     form.setFieldValue("lastName", event.currentTarget.value)
@@ -145,42 +144,42 @@ export const Login = (props: PaperProps) => {
                             onChange={(event) =>
                                 form.setFieldValue("email", event.currentTarget.value)
                             }
-                            error={form.errors.email && "Invalid email"}
+                            error={form.errors.email && "Email không đúng"}
                             radius="md"
                         />
 
                         <PasswordInput
                             required
-                            label={i18n._("Password")}
-                            placeholder={i18n._("Your password")}
+                            label={i18n._("Mật khẩu")}
+                            placeholder={i18n._("Mật khẩu của bạn ...")}
                             value={form.values.password}
                             onChange={(event) =>
                                 form.setFieldValue("password", event.currentTarget.value)
                             }
                             error={
                                 form.errors.password &&
-                                i18n._("Password should include at least 6 characters")
+                                i18n._("Mật khẩu phải có ít nhất 6 kí tự")
                             }
                             radius="md"
                         />
 
                         {type === "register" && (
                             <PasswordInput
-                                label={i18n._("Confirm password")}
-                                placeholder={i18n._("Confirm password")}
+                                label={i18n._("Xác nhận mật khẩu")}
+                                placeholder={i18n._("Xác nhận mật khẩu")}
                                 {...form.getInputProps("confirmPassword")}
                             />
                         )}
 
-                        {type === "register" && (
+                        {/* {type === "register" && (
                             <Checkbox
-                                label={i18n._("I accept terms and conditions")}
+                                label={i18n._("Tôi đồng ý với điều khoản")}
                                 checked={form.values.terms}
                                 onChange={(event) =>
                                     form.setFieldValue("terms", event.currentTarget.checked)
                                 }
                             />
-                        )}
+                        )} */}
                     </Stack>
 
                     <Group justify="space-between" mt="xl">
@@ -192,16 +191,16 @@ export const Login = (props: PaperProps) => {
                             size="xs"
                         >
                             {type === "register"
-                                ? i18n._("You already have an account? Login")
-                                : i18n._("You don't have an account? Register")}
+                                ? i18n._("Bạn đã có tài khoản? Đăng nhập")
+                                : i18n._("Bạn chưa có tài khoản? Đăng kí")}
                         </Anchor>
                         {showLoader ? (
                             <Button loading type="submit" radius="xl">
-                                {upperFirst(i18n._(type))}
+                                {upperFirst(type === 'login' ? "Đăng nhập" : "Đăng kí")}
                             </Button>
                         ) : (
                             <Button type="submit" radius="xl">
-                                {upperFirst(i18n._(type))}
+                                {upperFirst(type === 'login' ? "Đăng nhập" : "Đăng kí")}
                             </Button>
                         )}
                     </Group>

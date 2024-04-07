@@ -54,6 +54,40 @@ export const createFolder = async (name: string, parentId: string, userId: strin
     }
 };
 
+export const saveFile = async (name: string, parentId: string, userId: string, path: string, size: string) => {
+    try {
+        let response = await axios.post("/drive/save-file", {
+            name,
+            parentId,
+            userId,
+            path,
+            size
+        });
+        return response;
+    } catch (exception) {
+        return {
+            err: true,
+            exception,
+        };
+    }
+};
+
+
+export const deleteFolder = async (folderId: string) => {
+    try {
+        let response = await axios.post("/drive/delete-folder", { folderId });
+        return {
+            err: false,
+            response
+        };
+    } catch (exception) {
+        return {
+            err: true,
+            exception
+        }
+    }
+};
+
 const regex2nfa = async (regex) => {
     try {
         let response = await axios.post('/regex-to-nfa', { regex: regex })

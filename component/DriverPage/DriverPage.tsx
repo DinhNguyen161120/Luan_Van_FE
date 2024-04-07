@@ -7,8 +7,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { IconArrowBarUp, IconFolderPlus } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
-import { saveFile, deleteFolder } from "../../apiNode";
-import { createFolder, getAllFolder } from "../../api";
+import { createFolder, getAllFolder, saveFile, deleteFolder } from "../../api";
 import { checkNamesake } from "../../helpers/checkNamesake";
 import { findRootFolder, findRootFolderV2 } from "../../helpers/findRootFolder";
 import { findChildOfFolder } from "../../helpers/findChildOfFolder";
@@ -50,6 +49,7 @@ export const DriverPage = () => {
             measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
         };
     }, []);
+
     useEffect(() => {
         let userDetailsLocal = JSON.parse(localStorage.getItem("userDetails"));
         if (!userDetailsLocal) {
@@ -63,7 +63,6 @@ export const DriverPage = () => {
                 if (userDetailsLocal) {
                     let res: any = await getAllFolder(userDetailsLocal._id);
                     let folders = res.data;
-                    console.log(folders)
                     setFolders(folders);
                     let rootFolder: folder = findRootFolderV2(folders, userDetailsLocal._id);
                     setFolderCurrent(rootFolder);
@@ -127,6 +126,7 @@ export const DriverPage = () => {
             if (childFolders) {
                 return childFolders?.map((folder: folder) => {
                     return <RowTable
+                        key={folder._id}
                         userDetails={userDetails}
                         folder={folder}
                         folderClick={folderClick}
@@ -232,6 +232,7 @@ export const DriverPage = () => {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                         let res: any = await saveFile(file.name, folderCurrent._id, userDetails._id, downloadURL, file.size.toString())
+                        console.log(res)
                         if (res.err) {
                             toast.error("upload file failed!");
                         } else {

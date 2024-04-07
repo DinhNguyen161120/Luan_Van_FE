@@ -58,11 +58,30 @@ export const ExplainMode = ({ mode, setMode = () => { } }) => {
                     <button className={styles.modeDetails}
                         onClick={handleShowExplainMode}
                     >
-                        Mode details
+                        Chi tiết Mode
                     </button>
                 </div>
             </div>
             <div className={`${styles.explainMode} ${showExplainMode ? '' : styles.hideExplainMode}`}>
+                <div>Nhập kí tự $ thay thế cho kí tự ε </div>
+                <div className={styles.describeState}>
+                    <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="node start-border" r="20" cx="25" cy='25'></circle>
+                    </svg>
+                    <label>Trạng thái bắt đầu</label>
+                </div>
+                <div className={styles.describeState}>
+                    <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="node final-border" r="20" cx="25" cy='25'></circle>
+                    </svg>
+                    <label>Trạng thái kết thúc</label>
+                </div>
+                <div className={styles.describeState}>
+                    <svg height="50" width="50" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="node start-border node-fill-start-end" r="20" cx="25" cy='25'></circle>
+                    </svg>
+                    <label>Vừa là trạng thái bắt đầu và kết thúc</label>
+                </div>
                 <div>
                     {mode == 0 && <IntroduceForce />}
                     {mode == 1 && <IntroduceDraw />}

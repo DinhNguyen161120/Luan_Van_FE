@@ -456,7 +456,6 @@ const ToolDraw = ({
             inputBox.focus();
             inputBox.addEventListener("change", (eventInput) => {
                 let value = eventInput.target.value;
-                console.log(value)
                 let copyNodes = [...nodes]
                 let newNodes = copyNodes.map((node) => {
                     if (node.id === nodeId) {
@@ -465,7 +464,6 @@ const ToolDraw = ({
                     }
                     return node;
                 });
-                console.log(newNodes)
                 setNodes(newNodes)
                 inputBox.remove();
             });

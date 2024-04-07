@@ -221,7 +221,7 @@ const Regex2Dfa = () => {
             setShowLoader(true)
             let response = await api.regex2nfa(regex)
             if (!response.err) {
-                toast.success('Convert successfully!')
+                toast.success('Chuyển đổi thành công')
                 let data = response.data
                 setData(data)
                 setNfa(data)
@@ -261,7 +261,7 @@ const Regex2Dfa = () => {
                 <div>
                     <div className={styles.inputData}>
                         <div className={styles.inputDataTop}>
-                            <label>Regex: </label>
+                            <label>Biểu thức chính quy: </label>
                             <input
                                 type="text"
                                 value={regex}
@@ -272,7 +272,7 @@ const Regex2Dfa = () => {
                         <div className={styles.inputDataBottom}>
                             <button
                                 onClick={handleConvertRegex2Nfa} >
-                                Convert
+                                Chuyển đổi
                             </button>
                         </div>
                     </div>

@@ -35,7 +35,7 @@
 }
 
 .final-border {
-    stroke: #000;
+    stroke: red;
     stroke-width: 4;
 }
 
@@ -55,6 +55,8 @@
 }
 
 .node-fill-start-end {
-    fill: #aad317;
+    fill: red;
     color: #fff;
+    /* stroke: red;
+    stroke-width: 4px; */
 }

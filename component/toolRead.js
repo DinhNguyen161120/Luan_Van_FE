@@ -62,6 +62,7 @@ const ToolRead = ({
             setNodeAfterRead(epsilonClosure)
         } else if (typeAutomata == 'dfa') {
             setNodeAfterRead([automata.initial_state])
+            setStepReads([...stepReads, [fromIdToNodeLabel(automata.initial_state)]])
         }
 
         setStart(true)
@@ -78,15 +79,13 @@ const ToolRead = ({
         let nextIndex = indexString - 1
         setIndexString(nextIndex)
         setStringRead(text.slice(0, nextIndex - 1))
+        let stepReadsCopy = [...stepReads]
+        stepReadsCopy.pop()
+        stepReadsCopy.pop()
+        setStepReads([...stepReadsCopy])
     }
     const handleReadNext = () => {
         let nextIndex = indexString + 1
-        // if (typeAutomata == 'nfaEpsilon') {
-        //     let states = stringAcceptByNfaEpsilon(text, automata)
-        // } else if (typeAutomata == 'dfa') {
-        //     let states = stringAcceptByDfa(stringRead, automata)
-        // }
-
         setIndexString(nextIndex)
         setStringRead(text.slice(0, nextIndex + 1))
     }
@@ -166,7 +165,6 @@ const ToolRead = ({
     }
 
     useEffect(() => {
-        console.log(stepReads)
         if (typeAutomata == 'nfaEpsilon') {
             let states = stringAcceptByNfaEpsilon(stringRead, automata)
             if (text.length === stringRead.length) {
@@ -200,17 +198,48 @@ const ToolRead = ({
                     setShowReject(check)
                 }
             }
-            setNodeAfterRead(states)
+            if (states) {
+                let listLabel = fromListIdToNodeLabel(states)
+                if (listLabel[0]) {
+                    setStepReads([...stepReads, listLabel])
+                }
+                setNodeAfterRead(states)
+            }
         }
-        console.log(text, indexString)
     }, [stringRead])
+
+    let stepReadForNFAEpsilon = stepReads.map((listLabels, index) => {
+        if (index == 0) {
+            return <div key={index}>
+                {/* <div>{`- Step ${index + 1}:`}</div> */}
+                {` ε-CLOSURE(${fromIdToNodeLabel(automata.initial_state)}) = ${listLabels}`}
+            </div>
+        }
+        return <div key={index}>
+            {/* <div>{`- Step ${index + 1}:`}</div> */}
+            {`ε-CLOSURE(δ({${stepReads[index - 1]}}, ${text[index - 1]})) = ${listLabels.length ? listLabels : '{}'}`}
+        </div>
+    })
+
+    let stepReadForDFA = stepReads.map((listLabels, index) => {
+        if (index == 0) {
+            return <div key={index}>
+                {/* <div>{`- Step ${index + 1}:`}</div> */}
+                {` Start = ${listLabels}`}
+            </div>
+        }
+        return <div key={index}>
+            {/* <div>{`- Step ${index + 1}:`}</div> */}
+            {`δ({${stepReads[index - 1]}, ${text[index - 1]})) = ${listLabels.length ? listLabels : '{}'}`}
+        </div>
+    })
 
     return (
         <div className={styles.toolRead}>
             <input className={styles.input}
                 value={text}
                 onChange={handleChangeInput}
-                placeholder='String...'
+                placeholder='Chuỗi...'
             />
             <div className={styles.arrayString}>
                 {
@@ -229,7 +258,7 @@ const ToolRead = ({
                     !start && <button
                         onClick={handleStart}
                     >
-                        Start
+                        Bắt đầu
                     </button>
                 }
                 {
@@ -237,43 +266,38 @@ const ToolRead = ({
                     <button
                         onClick={handleStop}
                     >
-                        Stop
+                        Dừng
                     </button>
                 }
                 {
                     start && <button onClick={handleSepback}>
                         <FontAwesomeIcon className={styles.iconMarginRight} icon={faBackward} />
-                        Step backward
+                        Bước trước
                     </button>
                 }
                 {
                     start && <button
                         onClick={handleReadNext}
-                    >Read next
+                    >
+                        Đọc kí tự tiếp theo
                         <FontAwesomeIcon className={styles.iconMarginLeft} icon={faForward} />
                     </button>
                 }
                 {
                     start && <button
                         onClick={handleReadAll}
-                    >Read all</button>
+                    >
+                        Đọc tất cả
+                    </button>
                 }
             </div>
             <div>
                 {
-                    typeAutomata == 'nfaEpsilon' && stepReads.length > 0 ? stepReads.map((listLabels, index) => {
-                        if (index == 0) {
-                            return <div>
-                                <div>{`- Step ${index + 1}:`}</div>
-                                {` ε-CLOSURE(${fromIdToNodeLabel(automata.initial_state)}) = ${listLabels}`}
-                            </div>
-                        }
-                        return <div>
-                            <div>{`- Step ${index + 1}:`}</div>
-                            {`ε-CLOSURE(δ({${stepReads[index - 1]}}, ${text[index - 1]})) = ${listLabels.length ? listLabels : '{}'}`}
-                        </div>
-                    })
-                        : ''
+                    typeAutomata == 'nfaEpsilon' && stepReads.length > 0
+                        ?
+                        stepReadForNFAEpsilon
+                        :
+                        stepReadForDFA
                 }
             </div>
         </div >

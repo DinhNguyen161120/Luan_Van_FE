@@ -110,11 +110,11 @@ const Nfa2Dfa = () => {
     useEffect(() => {
         dispatch({
             type: headerActions.SET_TITLE_HEADER,
-            title: 'NFAε to DFA'
+            title: 'NFA to DFA'
         })
         dispatch({
             type: headerActions.SET_SELECT_HEADER,
-            headerSelect: 'nfaε2dfa'
+            headerSelect: 'nfa2dfa'
         })
     }, [])
     return (

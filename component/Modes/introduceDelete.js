@@ -7,12 +7,12 @@ const IntroduceDelete = () => {
             <div className={styles.content}>
                 <div>Delete Mode</div>
                 <p>
-                    This mode allows you to delete nodes and/or edges.
+                    Chế độ này cho phép bạn xóa các nút và/hoặc các cạnh.
                 </p>
-                <div>Ways you can interact with the graph:</div>
+                <div>Những cách bạn có thể tương tác với biểu đồ:</div>
                 <ul>
-                    <li>Click on a node to delete it</li>
-                    <li>Click on an edge to delete it.</li>
+                    <li>Bấm vào một nút để xóa nút</li>
+                    <li>Bấm vào một cạnh để xóa cạnh.</li>
                 </ul>
             </div>
         </div >

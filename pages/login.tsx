@@ -11,7 +11,7 @@ const LoginPage = () => {
     useEffect(() => {
         dispatch({
             type: headerActions.SET_TITLE_HEADER,
-            title: 'Login'
+            title: 'Đăng nhập'
         })
     }, [])
 

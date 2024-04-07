@@ -29,9 +29,10 @@ const NfaEpsilon2Nfa = () => {
     const dispatch = useDispatch()
     const [dataShowNfa, setDataShowNfa] = useState(false)
     const [nfa, setNfa] = useState({})
+    const [showLoader, setShowLoader] = useState(false)
+    const [nodeAfterRead, setNodeAfterRead] = useState([])
 
     const transition_function_comma = (nfa) => {
-        console.log(nfa)
         let states = nfa.states
         let transition_function = nfa.transition_function
         let alphabets = nfa.alphabets
@@ -118,7 +119,6 @@ const NfaEpsilon2Nfa = () => {
         setShowLoader(false)
     }
 
-    const [showLoader, setShowLoader] = useState(false)
 
     useEffect(() => {
         if (nodes[0]) {
@@ -163,7 +163,6 @@ const NfaEpsilon2Nfa = () => {
             setHeightSvg(window.innerHeight - 150)
         }
     }, [])
-    const [nodeAfterRead, setNodeAfterRead] = useState([])
 
     return (
         <>
@@ -206,7 +205,7 @@ const NfaEpsilon2Nfa = () => {
                         setMode={setMode}
                     />
                     <div>
-                        <button className={styles.convertButton} onClick={handleSubmit}>convert</button>
+                        <button className={styles.convertButton} onClick={handleSubmit}>Chuyển đổi</button>
                     </div>
                     {/* <div>
                         <button className={styles.convertButton} onClick={copyData}>Copy</button>

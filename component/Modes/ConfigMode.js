@@ -15,16 +15,16 @@ const ConfigMode = () => {
             <div className={styles.content}>
                 <div>Config Mode</div>
                 <p>
-                    This mode allows you to change label of node and adjust parameters.
+                    Chế độ này cho phép bạn thay đổi nhãn của nút và điều chỉnh các thông số.
                 </p>
-                <div>Ways you can interact with the graph:</div>
+                <div>Những cách bạn có thể tương tác với biểu đồ:</div>
                 <ul>
-                    <li>Click on a node to change label</li>
+                    <li>Bấm vào một nút để thay đổi nhãn</li>
                 </ul>
             </div>
-            <div>Parameters: </div>
+            <div>Thông số: </div>
             <div className="flex gap-3 pl-[20px]">
-                <div>Edge Length: </div>
+                <div>Chiều dài cạnh: </div>
                 <input type="number" value={linkLength} onChange={handleChange} />
             </div>
         </div >

@@ -53,7 +53,7 @@ export const DriverPage = () => {
     useEffect(() => {
         let userDetailsLocal = JSON.parse(localStorage.getItem("userDetails"));
         if (!userDetailsLocal) {
-            toast.warn("Sign in to use this feature");
+            toast.warn("Đăng nhập để sử dụng chức năng này");
             router.push("/login");
             return
         }
@@ -82,7 +82,7 @@ export const DriverPage = () => {
         if (folderName.length != 0) {
             let check: boolean = checkNamesake(folders, folderCurrent, folderName);
             if (check) {
-                toast.warn("Folder name is exit!");
+                toast.warn("Tên thư mục đã tồn tại!");
             } else {
                 let path = folderCurrent.path + "/" + folderName;
                 let res: any = await createFolder(
@@ -92,7 +92,7 @@ export const DriverPage = () => {
                     path
                 );
                 if (res.err) {
-                    toast.error("create folder failed!");
+                    toast.error("Tạo thư mục thất bại!");
                 } else {
                     toast.success(res?.data);
                     close();
@@ -100,7 +100,7 @@ export const DriverPage = () => {
                 }
             }
         } else {
-            toast.warn("Please enter a name for the folder");
+            toast.warn("Tên thư mục không được để trống");
         }
     };
     const folderClick = (folder: folder) => {
@@ -234,7 +234,7 @@ export const DriverPage = () => {
                         let res: any = await saveFile(file.name, folderCurrent._id, userDetails._id, downloadURL, file.size.toString())
                         console.log(res)
                         if (res.err) {
-                            toast.error("upload file failed!");
+                            toast.error("Tải file lên thất bại!");
                         } else {
                             toast.success(res?.data);
                             close();
@@ -262,8 +262,8 @@ export const DriverPage = () => {
                     <TextInput
                         value={folderName}
                         mt="md"
-                        placeholder="folder name..."
-                        label="Folder Name"
+                        placeholder="Tên thư mục..."
+                        label="Tên thư mục"
                         error=""
                         onChange={(event: ChangeEvent<HTMLInputElement>) => {
                             setFolderName(event.target.value);
@@ -297,7 +297,7 @@ export const DriverPage = () => {
                                 onClick={open}
                                 color="#202e3e"
                             >
-                                Create
+                                Tạo
                             </Button>
                             <Button
                                 ml={10}
@@ -305,7 +305,7 @@ export const DriverPage = () => {
                                 color="#202e3e"
                                 onClick={handleClickButtonUpload}
                             >
-                                Upload
+                                Tải lên
                             </Button>
                             <input
                                 style={{ display: 'none' }}
@@ -318,10 +318,10 @@ export const DriverPage = () => {
                             <Table stickyHeader stickyHeaderOffset={60}>
                                 <Table.Thead>
                                     <Table.Tr>
-                                        <Table.Th>Title</Table.Th>
-                                        <Table.Th>Owner</Table.Th>
-                                        <Table.Th>Modified time</Table.Th>
-                                        <Table.Th>Size</Table.Th>
+                                        <Table.Th>Name</Table.Th>
+                                        <Table.Th>Chủ sở hữu</Table.Th>
+                                        <Table.Th>Thời gian</Table.Th>
+                                        <Table.Th>Kích thước</Table.Th>
                                     </Table.Tr>
                                 </Table.Thead>
                                 <Table.Tbody>{rows && rows}</Table.Tbody>

@@ -97,7 +97,7 @@ const Header = () => {
             <div className={styles.title} >
                 {title}
             </div>
-            {/* <div className={styles.headerButton}>
+            <div className={styles.headerButton}>
                 {
                     userDetails != null &&
                     <Text mr={10}>{userDetails.firstName + ' ' + userDetails.lastName}</Text>
@@ -124,7 +124,7 @@ const Header = () => {
                         </Text>
                     </Button>
                 }
-            </div> */}
+            </div>
             <div className={`${styles.containerNavBar}`}>
                 <NavLink
                     label="Automata tools"
@@ -151,12 +151,12 @@ const Header = () => {
                         onClick={() => { handleClickLink('/nfa2dfa') }}
                         active={headerSelect == 'nfaε2dfa'}
                     />
-                    <NavLink
+                    {/* <NavLink
                         classNames={styles}
                         label="NFA to DFA"
                         onClick={() => { handleClickLink('/nfa2dfa2') }}
                         active={headerSelect == 'nfa2dfa'}
-                    />
+                    /> */}
                     <NavLink
                         classNames={styles}
                         label="DFA to Regex"
@@ -164,13 +164,14 @@ const Header = () => {
                         active={headerSelect == 'dfa2regex'}
                     />
                 </NavLink>
-                {/* <NavLink
+                <NavLink
                     label="My drive"
                     childrenOffset={28}
                     classNames={styles}
                     onClick={() => { handleClickLink('/driver') }}
                     active={headerSelect == 'driver'}
-                ></NavLink> */}
+                    defaultOpened
+                ></NavLink>
             </div>
         </div>
     )

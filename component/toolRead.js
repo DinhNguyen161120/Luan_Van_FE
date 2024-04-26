@@ -25,7 +25,7 @@ const ToolRead = ({
         array.forEach(char => {
             if (automata && automata.alphabets) {
                 if (!automata.alphabets.includes(char)) {
-                    alert(`Alphabets does not include the letter ${char}.`)
+                    alert(`Alphabets không bao gồm kí tự ${char}.`)
                     check = false
                 }
             }

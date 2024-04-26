@@ -210,7 +210,7 @@ const Dfa2Regex = () => {
                         setMode={setMode}
                     />
                     <div>
-                        <button className={styles.convertButton} onClick={handleSubmit}>convert</button>
+                        <button className={styles.convertButton} onClick={handleSubmit}>Chuyển đổi</button>
                     </div>
                     <div>Biểu thức chính quy:</div>
                     <div className={styles.regex}>
